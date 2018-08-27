@@ -1,0 +1,5 @@
+.git
+.dockerignore
+client.http
+Pipfile*
+README*

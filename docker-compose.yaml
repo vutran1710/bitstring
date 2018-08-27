@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  app:
+    restart: always
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      USER_COUNT: "100"
+      REDIS_HOST: "redis"
+    depends_on:
+      - redis
+    links:
+      - redis
