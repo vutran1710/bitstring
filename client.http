@@ -1,0 +1,31 @@
+# A simple API document, only run with Emacs Restclient-mode
+# Normally our app run with 100 USERS already set, equavilent to 100 bit-string
+:url = http://localhost:5000
+
+# Check user in
+# we can check an user in/out as to change the bitstring
+GET :url/checkin/10
+
+# With some user checked in, we can start query number of users who checked in
+# Response will include the total number and their ids
+GET :url/logged
+
+# Check absent
+GET :url/absent
+
+# Here we query those who have been present in 2 days consecutively
+GET :url/workers
+
+# Check absent, query those who have been absent in 2 days consecutively
+GET :url/yolos
+
+# Examine today bitstring
+# If the string not available yet, our app will create an empty one
+GET :url/string
+
+# Fake data for yesterday
+# Save the response for later comparision using check consecutive_present/absent api
+GET :url/fake
+
+# Reset redis, if needed
+GET :url/reset
