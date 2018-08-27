@@ -1,0 +1,89 @@
+#+OPTIONS: ^:nil
+#+TITLE: Redis Playtime
+#+DATE: <2018-08-27 Sun>
+#+AUTHOR: Vu Tran
+#+EMAIL: me@vutr.io
+
+* Content                                                               :TOC:
+- [[#introduction][Introduction]]
+- [[#what-have-we-here][What have we here?]]
+- [[#up-and-running][Up and running]]
+- [[#testing][Testing]]
+- [[#reviews-contributions-and-issues][Reviews, contributions and issues]]
+- [[#license][License]]
+
+* Introduction
+Little playtime with Flask, Redis Bitstring and Docker.
+
+Here we are going to use Bitstring and Redis to perform user-login records on daily basis.
+
+
+* What have we here?
+While we can easily write some command line script to test and perform the task, it's always nice to be a little more
+eye-candy. Besides, settling for ordinary is not my style hehe. So let's mix things up a bit...
+
+1. Redis-py :: a redis-client for python, we use it to make redis sing and dance
+2. Bitstring :: a small lib to read/parse bit-string and bytes
+3. Flask :: let's have a small api-builder library over our stuffs.
+4. Pytest, Jedi, Flake, Ipython :: for the sake of coding joy! :)
+
+Anyway, nothing too serious about these. Let's get started!
+
+* Up and running
+To run the app, first you need to have Docker installed and running, so you can save a bunch of time installing python
+and redis separately like our parents used to do in 199x.
+
+Clone this repo:
+#+begin_src sh
+$ git clone https://github.com/vutran1710/bitstring
+$ cd bitstring
+#+end_src
+
+Now, we are ready to build the image and fire up Docker...
+#+begin_src sh
+$ docker-compose up --build
+#+end_src
+
+By default, Flask will run at port 5000.
+
+There are few API endpoints to play around. I made a brief document about them in /client.http/. Actually you can
+directly interact with the api there using Emacs-Restclient mode. Otherwise, just use any /Http Client/ of your liking
+to call the api and examine result. *cURL* is your closest friend in such case, I guess.
+
+Anytime you want to change the number of user, you can modify *USER_COUNT* in /docker-compose.yaml/ file, then run the
+following command to update the app with latest code-base:
+
+#+begin_src  sh
+$ docker-compose up --build --force-recreate
+#+end_src
+
+Another simple way is to comment out /service *app*/ inside docker-compose file. In such case, only redis container is
+created for us. But you will have to install the neccessary dependencies, including *Flask*, *Redis-py* and
+*Bitstring*.
+
+For the app, just run the below commands in the exact order:
+#+begin_src  sh
+$ docker-compose up
+$ pip install -r requirements.txt
+$ USER_COUNT=*n* python app.py
+#+end_src
+
+You can define number of users by setting the optional environment variable *USER_COUNT*. Default number of users is 100.
+
+* Testing
+Tests were written using *pytest*, so to run it you need some toys to start.
+The recommended way is to use *pipenv* and install dependencies which are specified in *Pipfile*.
+
+In such case, just call...
+#+begin_src sh
+$ pipenv run
+$ pipenv run pytest test.py
+#+end_src
+
+That's all there is to it! Have a good day!
+
+* Reviews, contributions and issues
+...are always welcome!
+
+* License
+MIT 2018 by Vu Tran
