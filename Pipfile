@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+redis = "*"
+bitstring = "*"
+flask = "*"
+
+[dev-packages]
+ipython = "*"
+jedi = "*"
+"flake8" = "*"
+yapf = "*"
+"autopep8" = "*"
+importmagic = "*"
+pytest = "*"
+
+[requires]
+python_version = "3.7"
