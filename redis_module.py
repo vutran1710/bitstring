@@ -1,7 +1,6 @@
 import os
 from datetime import datetime, timedelta
 
-# If user number is not multiple of 8, we determine a padding
 USER_COUNT = int(os.environ.get('USER_COUNT', 100))
 DATE_FORMAT = '%d/%m/%Y'
 
