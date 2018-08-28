@@ -15,7 +15,16 @@
 * Introduction
 Little playtime with Flask, Redis Bitstring and Docker.
 
-Here we are going to use Bitstring and Redis to perform user-login records on daily basis.
+Here we are going to use Bitstring and Redis to perform employee-attendance record system like this:
+
+#+begin_src
+Given 100 users, create a system that records employee's daily attendance status using Redis.
+At any given time, the employer can query the following:
+- the total counts of presence each day (along with their ids)
+- the total count of absence each day (along with their ids)
+- the total count of users who were present on two consecutive days (along with their ids)
+- the total count of users who were absent on two consecutive days (along with their ids)
+#+end_src
 
 
 * What have we here?
